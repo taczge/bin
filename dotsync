@@ -1,0 +1,28 @@
+#!/bin/sh
+
+#
+# create symbolic link to dot file.
+#
+
+f() {
+readonly DOT_DIR="$HOME/Dropbox/dot"
+for dotfile in `ls $DOT_DIR| grep ^dot\..*`; do
+    FULL_PATH=`echo $dotfile | sed -e 's/_/\//g' | sed -e 's/^dot//g'`
+    echo $FULL_PATH
+
+    DIR_NAME=`echo $FULL_PATH | sed -e 's/\(.*\)\/.*$/\1/g'`
+    echo $DIR_NAME
+
+    BASE_NAME=`echo $FULL_PATH | sed -e 's/.*\/\(.*\)$/\1/g'`
+    echo $BASE_NAME
+done
+}
+
+readonly DOT_DIR="$HOME/Dropbox/dot"
+
+cd $DOT_DIR
+for dotfile in `ls ${DOT_DIR} | grep ^dot\..*`; do
+    ln -sfvT $DOT_DIR/$dotfile $HOME/`echo $dotfile | sed 's/^dot//g'`
+done
+
+# end of file

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# convert text to ps file.
+#
+
+if [ $# -lt 1 ]
+then
+    echo usage: $0 input_file
+    exit 0;
+fi
+
+nkf -e $1 | a2ps \
+    -o out.ps \
+    --encoding=euc-jp \
+    --column=1 --row=1 \
+    --portrait \
+    -B \
+    --borders="no" \
+    --left-footer="" --left-title="" \
+    -f13
+
+# end of file

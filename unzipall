@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#
+# フォルダ内のzipファイル
+# 新規作成したディレクトリに格納する
+# （ディレクトリ名: 20yy-mm-dd）
+#
+
+# フォルダ名が日付のフォルダを作る
+DATE_DIR=$(date +%Y-%m-%d)
+if [ ! -d ./${DATE_DIR} ]
+then
+    mkdir ./${DATE_DIR}
+fi
+
+# 展開
+for file in *.zip
+do
+    unzip -o -d ./${DATE_DIR} ${file}
+    rm ${file}
+done
+
+# *.html を削除
+for html_file in ${DATE_DIR}/*.html
+do
+    rm ${html_file}
+done
+
+# end of file

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+readonly REPOSITORY="$HOME/git/"
+
+#for dir in `ls -F $REPOSITORY | grep /`; do
+for dir in `find $REPOSITORY -maxdepth 1 -mindepth 1 -type d`; do
+    echo "--------------------"
+    echo $dir
+    (cd $dir; git pull)
+done
+
+# end of file

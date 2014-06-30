@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#
+# convert png image to eps.
+#
+
+for i in *.png
+do
+    convert $i eps2:`echo $i | sed 's/\.png$/\.eps/'`
+done
+
+# end of file

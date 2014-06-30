@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# all
+rm -f *~
+
+# tex
+for i in `ls *.tex | sed 's/\.tex$//g'`; do
+    rm -f ${i}.aux ${i}.dvi ${i}.log ${i}.pdf ${i}.ps \
+        ${i}.bbl ${i}.blg ${i}.toc ${i}.fdb_latexmk \
+        ${i}.nav  ${i}.snm  ${i}.synctex.gz ${i}.vrb ${i}.out ${i}.thm ${i}.fls
+done
+
+# python
+rm -f *.pyc
+
+# end of file

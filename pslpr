@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#
+# print out Post Script file by lpr.
+#
+
+is_multi_page="false"
+file=default
+
+for arg in "$@"; do
+    case $arg in
+	*.ps)
+	    file=$arg;;
+	-1)
+	    is_multi_page="false";;
+	-2)
+	    is_multi_page="true";;
+	*)
+	    echo "Usage: $(basename $0) file.ps [-1|-2]" 1>&2;
+	    exit 1;;
+    esac
+done
+
+if [ ! -e $file ]; then
+    echo "$0: can't open input file $file" 1>&2
+    exit 1;
+fi
+
+if [ $is_multi_page = "true" ]; then
+    psnup -2 $file | psset -t | lpr
+else
+    psset -d $file | lpr
+fi
+
+# end of file

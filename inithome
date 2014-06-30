@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# ~/ -+- !in
+#     |- !picure
+#     |- !music
+#     |- !video
+#     |- !public
+#     |- @work
+#     |- @bin
+#     |- @eclipse
+#     |- @git
+#     |- @cloud
+#     |- local
+#
+
+for dir in \in document picture music video public template desktop local; do
+    mkdir ~/$dir
+done
+
+xdg-user-dirs-update
+
+# end of file

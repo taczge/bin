@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# modify graphic driver from dvipdfmx to dvips
+# and create ps file using latexmk command.
+#
+
+if [ $# -eq 0 ]; then
+    echo "** ERROR **: few arguments."
+    echo "Usage: `basename $0` file.tex ..."
+    exit 1
+fi
+
+for arg in "$@"; do
+    if [ ! -f $arg ]; then
+	echo "** WARNING **: $arg does not exists (skipped)."
+	continue
+    fi
+
+    if ! expr "$arg" : ".*\.tex" > /dev/null; then
+	echo "** WARNING **: $arg is not TeX file (skipped)."
+	continue
+    fi
+
+    prefix=tmp.dvips-
+    basename=`basename $arg | sed -e 's/\(.*\).tex/\1/'`
+    tmpfile=$prefix$basename
+    texfile=${tmpfile}.tex
+
+    sed -e 's/\([^a-zA-Z]\)dvipdfmx\([^a-zA-Z]\)/\1dvips\2/g' $arg > $texfile
+    latexmk -ps $texfile
+    mv ${tmpfile}.ps ${basename}.ps
+    rm ${prefix}* -fr
+done
+
+# end of file

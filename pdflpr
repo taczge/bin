@@ -1,0 +1,6 @@
+#!/bin/sh
+
+pdftops -paper match -duplex $1 /tmp/tmp.ps
+pslpr /tmp/tmp.ps
+
+# end of file
