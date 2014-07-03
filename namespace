@@ -1,0 +1,23 @@
+#!/bin/bash -ex
+
+#
+# USAGE: source namespace
+#    NG: ./namespace
+#
+
+add_name_space() {
+    short=$1
+    full=$2
+
+    export NS="${NS}prefix ${short}: <${full}> "
+}
+
+unset NS
+add_name_space rdf          http://www.w3.org/1999/02/22-rdf-syntax-ns#
+add_name_space rdfs         http://www.w3.org/2000/01/rdf-schema#
+add_name_space owl          http://www.w3.org/2002/07/owl#
+add_name_space dbpedia      http://dbpedia.org/resource/
+add_name_space dbpedia-owl  http://dbpedia.org/ontology/
+add_name_space dbpprop      http://dbpedia.org/property/
+
+# end of file
