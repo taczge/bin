@@ -1,3 +1,5 @@
 #!/bin/sh
 
-w3m "http://www.google.co.jp/search?q=$1"
+query=`echo $@ | sed -e 's/ /\+/g'`
+
+w3m "http://www.google.co.jp/search?q=$query"
