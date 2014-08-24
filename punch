@@ -1,21 +1,8 @@
 #!/bin/sh
 
 readonly CONF_FILE="$HOME/.punch.conf"
-if [ ! -f $CONF_FILE ]; then
-    echo "[exit] $CONF_FILE does not exists."
-    exit 0
-fi
 
-load() {
-    echo "`grep $1 $CONF_FILE | cut -d= -f2`"
-}
-
-readonly FROM="`load FROM`"
-readonly TO="`load TO | sed -e "s|\\$HOME|$HOME|g"`"
-readonly USER="`load USER`"
-readonly PASSWORD="`load PASSWORD`"
-readonly UID="`id -un`"
-readonly GID="`id -gn`"
+. $CONF_FILE
 
 [ -d $TO ] || mkdir $TO
 
