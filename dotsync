@@ -10,5 +10,3 @@ cd $DOT_DIR
 for dotfile in `ls ${DOT_DIR} | grep ^dot\..*`; do
     ln -sfvT $DOT_DIR/$dotfile $HOME/`echo $dotfile | sed 's/^dot//g'`
 done
-
-# end of file
