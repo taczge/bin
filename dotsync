@@ -4,9 +4,15 @@
 # create symbolic link to dot file.
 #
 
-readonly DOT_DIR="$HOME/Dropbox/dot"
+create_link() {
+    dot_dir="$1"
 
-cd $DOT_DIR
-for dotfile in `ls ${DOT_DIR} | grep ^dot\..*`; do
-    ln -sfvT $DOT_DIR/$dotfile $HOME/`echo $dotfile | sed 's/^dot//g'`
-done
+    cd $dot_dir
+    for dotfile in `ls ${dot_dir} | grep ^dot\..*`; do
+        ln -sfvT $dot_dir/$dotfile $HOME/`echo $dotfile | sed 's/^dot//g'`
+    done
+}
+
+create_link "$HOME/Dropbox/dot/public"
+create_link "$HOME/Dropbox/dot/local"
+create_link "$HOME/Dropbox/dot/untracked"
