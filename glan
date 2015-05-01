@@ -1,4 +1,4 @@
 #!/bin/zsh
 
 dir=${1:-$(pwd)}
-emacsclient -n $(find $dir | peco)
+emacsclient -n $(find $dir -type f | peco)
