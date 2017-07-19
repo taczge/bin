@@ -1,0 +1,5 @@
+#!/bin/bash -u
+
+readonly TARGET_PROC=$(ps aux | peco)
+readonly TARGET_PID=$(echo "$TARGET_PROC" | awk '{print $2}')
+kill $TARGET_PID
