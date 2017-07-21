@@ -2,4 +2,10 @@
 
 readonly TARGET_PROC=$(ps aux | peco)
 readonly TARGET_PID=$(echo "$TARGET_PROC" | awk '{print $2}')
-kill $TARGET_PID
+
+echo "> ${TARGET_PROC}"
+read -p "Kill? (Y/n): " yn
+case "$yn" in
+    Y) kill -s SIGKILL $TARGET_PID ;;
+    *) echo "Abort." ;;
+esac
